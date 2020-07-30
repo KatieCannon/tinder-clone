@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
+import database from '../../utils/firebase';
 import '../TinderCards/TinderCards.css';
 
 const TinderCards = () => {
-    const [people, setPeople] = useState([ 
-        {
-            name: 'Wentworth Miller',
-            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Wentworth_by_Andrew_Horovitz.JPG/220px-Wentworth_by_Andrew_Horovitz.JPG'
-
-        }, 
-        {
-            name:'Nasri Atweh',
-            url: 'https://marcandrew.ca/wp-content/uploads/2014/07/Nasri.jpg'
+    const [people, setPeople] = useState([]);
+    useEffect(() => {
+        const unsubscribe = database.collection('people').onSnapshot(snapshot => (
+            setPeople(snapshot.docs.map(doc => doc.data()))
+        ));
+        return () => {
+            unsubscribe();
         }
-    ]);
+    },[]);
     return (
         <div>
             <div className='tinderCards__cardContainer'>
