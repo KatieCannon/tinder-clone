@@ -8,12 +8,13 @@ const App = () => {
   return (
     <div className="App">
      <Router>
-        <Header />
         <Switch>
           <Route path='/chats'>
+          <Header backButton='/' />
             <h1>chat</h1>
           </Route>
           <Route path='/'> 
+          <Header />
             <TinderCards />
             <SwipeButtons />
           </Route>
