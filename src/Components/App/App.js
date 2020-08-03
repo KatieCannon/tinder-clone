@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 const App = () => {
   return (
     <div className="App">
-      <Header />
-      <Router>
+     <Router>
+        <Header />
         <Switch>
-          <Route path='/chat'>
+          <Route path='/chats'>
             <h1>chat</h1>
           </Route>
           <Route path='/'> 
